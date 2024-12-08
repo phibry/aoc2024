@@ -56,34 +56,68 @@ func isDecreasing(report []int) bool {
 }
 
 func adjacentNumbersDiffersAtLeastOneAndAtMostThree(report []int) bool {
-	bools := false
 	for i := 1; i < len(report); i++ {
 		diff := report[i-1] - report[i]
 		if (diff < 0) {
 			diff = diff * -1
 		}
-		bools = diff >= 1 && diff <= 3
+    if (!(diff >= 1 && diff <= 3)) {
+      return false
+    }
 	}
-	return bools
+	return true
+}
+
+func problemDampener(report []int) bool {
+  fmt.Println("OG", report)
+  index := 0
+  report = append(report[:index], report[index+1:]...)
+  fmt.Println("NO", report)
+
+
+
+
+	// for i := 0; i < len(report); i++ {
+	//    fmt.Println("OG", report, i)
+	//    slidingSlice := append(report[:i], report[i+1:]...)
+	//    // slidingSlice = append(report[:i], report[i+1:]...)
+	//    // slidingSlice := make([]int, len(report))
+	//    // copy(slidingSlice, report)
+	//    // slidingSlice[i]--
+	//    fmt.Println("OG", report, i)
+	//    fmt.Println("NN", slidingSlice, i)
+	//
+	// 	if isIncreasing(slidingSlice) || isDecreasing(slidingSlice) {
+	// 		if (adjacentNumbersDiffersAtLeastOneAndAtMostThree(slidingSlice)) {
+	//        fmt.Println("YES")
+	//        return true
+	// 		}
+	// 	}
+	// }
+
+  return false
 }
 
 func main() {
 	input := ReadFileLineByLine("test.txt")
-
-	// [7 6 4 2 1]
-	safeCounter := 0
+	// input := ReadFileLineByLine("input.txt")
+	safeCounter1 := 0
+	// safeCounter2 := 0
 	for _, item := range input {
 		if isIncreasing(item) || isDecreasing(item) {
 			if (adjacentNumbersDiffersAtLeastOneAndAtMostThree(item)) {
-				fmt.Println(item)
-				safeCounter++
+				safeCounter1++
+				// safeCounter2++
+			}
+			if (problemDampener(item)) {
+				safeCounter1++
 			}
 		}
-		// for i:= 0; i < len(item); i++ {
-		//
-		// }
 	}
 
-	fmt.Println(safeCounter)
+  // part 1
+	// fmt.Println(safeCounter1)
 
+  // part 2
+	fmt.Println(safeCounter1)
 }
