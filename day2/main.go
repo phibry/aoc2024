@@ -52,72 +52,51 @@ func isDecreasing(report []int) bool {
 			return false
 		}
 	}
-	return true;
+	return true
 }
 
 func adjacentNumbersDiffersAtLeastOneAndAtMostThree(report []int) bool {
 	for i := 1; i < len(report); i++ {
 		diff := report[i-1] - report[i]
-		if (diff < 0) {
+		if diff < 0 {
 			diff = diff * -1
 		}
-    if (!(diff >= 1 && diff <= 3)) {
-      return false
-    }
+		if !(diff >= 1 && diff <= 3) {
+			return false
+		}
 	}
 	return true
 }
 
 func problemDampener(report []int) bool {
-  fmt.Println("OG", report)
-  index := 0
-  report = append(report[:index], report[index+1:]...)
-  fmt.Println("NO", report)
-
-
-
-
-	// for i := 0; i < len(report); i++ {
-	//    fmt.Println("OG", report, i)
-	//    slidingSlice := append(report[:i], report[i+1:]...)
-	//    // slidingSlice = append(report[:i], report[i+1:]...)
-	//    // slidingSlice := make([]int, len(report))
-	//    // copy(slidingSlice, report)
-	//    // slidingSlice[i]--
-	//    fmt.Println("OG", report, i)
-	//    fmt.Println("NN", slidingSlice, i)
-	//
-	// 	if isIncreasing(slidingSlice) || isDecreasing(slidingSlice) {
-	// 		if (adjacentNumbersDiffersAtLeastOneAndAtMostThree(slidingSlice)) {
-	//        fmt.Println("YES")
-	//        return true
-	// 		}
-	// 	}
-	// }
-
-  return false
-}
-
-func main() {
-	input := ReadFileLineByLine("test.txt")
-	// input := ReadFileLineByLine("input.txt")
-	safeCounter1 := 0
-	// safeCounter2 := 0
-	for _, item := range input {
-		if isIncreasing(item) || isDecreasing(item) {
-			if (adjacentNumbersDiffersAtLeastOneAndAtMostThree(item)) {
-				safeCounter1++
-				// safeCounter2++
-			}
-			if (problemDampener(item)) {
-				safeCounter1++
-			}
+	for i := 0; i < len(report); i++ {
+		data1 := append([]int{}, report[:i]...)
+		data1 = append(data1, report[i+1:]...)
+		if validate(data1) {
+			return true
 		}
 	}
 
-  // part 1
-	// fmt.Println(safeCounter1)
+	return false
+}
 
-  // part 2
+func validate(report []int) bool {
+	return (isIncreasing(report) || isDecreasing(report)) && adjacentNumbersDiffersAtLeastOneAndAtMostThree(report)
+}
+
+func main() {
+	// input := ReadFileLineByLine("test.txt")
+	input := ReadFileLineByLine("input.txt")
+
+	safeCounter1 := 0
+	for _, item := range input {
+		// if validate(item) {
+		if validate(item) || problemDampener(item) {
+			safeCounter1++
+		}
+	}
+
+	// part 1 = 624
+	// part 2 = 658
 	fmt.Println(safeCounter1)
 }
