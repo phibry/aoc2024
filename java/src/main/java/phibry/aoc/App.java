@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 
 public class App {
     public static void main(String[] args) throws FileNotFoundException {
-        var day1 = new Day1();
-        day1.day1();
+        Day1.day1();
     }
 }

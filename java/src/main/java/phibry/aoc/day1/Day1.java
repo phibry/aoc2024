@@ -5,14 +5,14 @@ import phibry.aoc.util.Util;
 import java.util.Arrays;
 
 public class Day1 {
-    public void day1() {
+    public static void day1() {
         var input = Util.readFile("src/main/resources/input1.txt");
         // var input = Util.readFile("src/main/resources/test1.txt");
         day11(input);
         day12(input);
     }
 
-    private void day11(int[][] input) {
+    private static void day11(int[][] input) {
         for (int[] row : input) {
             Arrays.sort(row);
         }
@@ -24,7 +24,7 @@ public class Day1 {
         System.out.println(diff);
     }
 
-    private void day12(int[][] input) {
+    private static void day12(int[][] input) {
         // var similarityScore = 0;
         // for (int i = 0; i < input[0].length; i++) {
         //     var counter = 0;
