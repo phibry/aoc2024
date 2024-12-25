@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Day1 {
     public static void day1() {
-        var input = Util.readFile("src/main/resources/input1.txt");
+        var input = Util.readFile1("src/main/resources/input1.txt");
         // var input = Util.readFile("src/main/resources/test1.txt");
         day11(input);
         day12(input);
